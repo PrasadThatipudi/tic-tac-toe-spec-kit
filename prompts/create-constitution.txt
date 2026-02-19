@@ -1,0 +1,26 @@
+Follow instructions in [speckit.constitution.prompt.md](file:///Users/tatipudiprasad/learning-space/spec-kit/practice/tic-tac-toe-spec-kit/.github/prompts/speckit.constitution.prompt.md).
+This is a game development project.
+
+We are building browser-based games using TypeScript and Canvas.
+
+Architecture Rules:
+- All games must use a finite state machine
+- Game loop must be isolated from rendering
+- No business logic inside UI components
+
+Testing:
+- All core logic must be unit tested
+- Game mechanics must be deterministic
+
+Specs:
+- Every feature must define:
+  - Inputs
+  - Outputs
+  - State transitions
+  - Edge cases
+  - Failure cases
+
+Code Quality:
+- No hardcoded magic numbers
+- All constants must be centralized
+- Clear separation of engine and game logic
