@@ -17,7 +17,7 @@
 
 ## Path Conventions
 
-Single project structure: `src/`, `tests/`, `public/` at repository root
+Single project structure: `src/`, `tests/` at repository root, `index.html` at root per Vite
 
 ---
 
@@ -27,7 +27,7 @@ Single project structure: `src/`, `tests/`, `public/` at repository root
 
 - [x] T001 Initialize Vite project with vanilla TypeScript template at repository root
 - [x] T002 Install development dependencies (vitest, jsdom, @vitest/ui) via npm
-- [x] T003 [P] Create project directory structure (src/constants/, src/models/, src/renderer/, tests/unit/, public/)
+- [x] T003 [P] Create project directory structure (src/constants/, src/models/, src/renderer/, tests/unit/)
 - [x] T004 [P] Configure vite.config.ts with test environment (jsdom, globals, setupFiles)
 - [x] T005 [P] Add test scripts to package.json (test, test:ui, test:run)
 - [x] T006 Create tests/setup.ts with Canvas API mocking for unit tests
@@ -91,7 +91,7 @@ Single project structure: `src/`, `tests/`, `public/` at repository root
 
 ### HTML & Entry Point for User Story 1
 
-- [x] T028 [P] [US1] Create public/index.html with canvas element (id="gameCanvas", 450x450px)
+- [x] T028 [P] [US1] Create index.html at project root with canvas element (id="gameCanvas", 450x450px)
 - [x] T029 [P] [US1] Create src/style.css with basic layout styling (centering, border, shadow)
 - [x] T030 [US1] Implement src/main.ts entry point (get canvas, get context, create demo board, render)
 - [x] T031 [US1] Verify canvas context error handling in src/main.ts (throw if context is null)

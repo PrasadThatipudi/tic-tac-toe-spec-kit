@@ -116,8 +116,7 @@ tests/
     ├── board.test.ts          # Board model tests
     └── renderer.test.ts       # Renderer tests
 
-public/
-└── index.html                 # HTML with canvas element
+index.html                     # HTML with canvas element (project root)
 ```
 
 ## Implementation Workflow (TDD)
@@ -363,7 +362,7 @@ function drawPiece(
 
 ### Step 5: Wire Up Main Entry Point (10 min)
 
-**File**: `public/index.html`
+**File**: `index.html` (project root)
 
 ```html
 <!DOCTYPE html>
