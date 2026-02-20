@@ -25,12 +25,12 @@ Single project structure: `src/`, `tests/`, `public/` at repository root
 
 **Purpose**: Initialize TypeScript project with Vite build tool and testing infrastructure
 
-- [ ] T001 Initialize Vite project with vanilla TypeScript template at repository root
-- [ ] T002 Install development dependencies (vitest, jsdom, @vitest/ui) via npm
-- [ ] T003 [P] Create project directory structure (src/constants/, src/models/, src/renderer/, tests/unit/, public/)
-- [ ] T004 [P] Configure vite.config.ts with test environment (jsdom, globals, setupFiles)
-- [ ] T005 [P] Add test scripts to package.json (test, test:ui, test:run)
-- [ ] T006 Create tests/setup.ts with Canvas API mocking for unit tests
+- [x] T001 Initialize Vite project with vanilla TypeScript template at repository root
+- [x] T002 Install development dependencies (vitest, jsdom, @vitest/ui) via npm
+- [x] T003 [P] Create project directory structure (src/constants/, src/models/, src/renderer/, tests/unit/, public/)
+- [x] T004 [P] Configure vite.config.ts with test environment (jsdom, globals, setupFiles)
+- [x] T005 [P] Add test scripts to package.json (test, test:ui, test:run)
+- [x] T006 Create tests/setup.ts with Canvas API mocking for unit tests
 
 **Checkpoint**: Project initialized with Vite, TypeScript, and Vitest ready for TDD workflow
 
@@ -42,9 +42,9 @@ Single project structure: `src/`, `tests/`, `public/` at repository root
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T007 Create src/constants/render-config.ts with GRID_SIZE, CELL_SIZE, CANVAS_WIDTH, CANVAS_HEIGHT constants
-- [ ] T008 [P] Add COLORS configuration object (background, grid, xPiece, oPiece) to src/constants/render-config.ts
-- [ ] T009 [P] Add RENDER_STYLE configuration object (gridLineWidth, pieceLineWidth, piecePadding) to src/constants/render-config.ts
+- [x] T007 Create src/constants/render-config.ts with GRID_SIZE, CELL_SIZE, CANVAS_WIDTH, CANVAS_HEIGHT constants
+- [x] T008 [P] Add COLORS configuration object (background, grid, xPiece, oPiece) to src/constants/render-config.ts
+- [x] T009 [P] Add RENDER_STYLE configuration object (gridLineWidth, pieceLineWidth, piecePadding) to src/constants/render-config.ts
 
 **Checkpoint**: All visual and structural constants centralized per Constitution Principle V - Ready for user story implementation
 
@@ -58,43 +58,43 @@ Single project structure: `src/`, `tests/`, `public/` at repository root
 
 ### Tests for User Story 1 (TDD - Write FIRST, Ensure FAIL)
 
-- [ ] T010 [P] [US1] Write test for Board type validation function in tests/unit/board.test.ts (valid 3x3 board passes)
-- [ ] T011 [P] [US1] Write test for Board validation with invalid cell count in tests/unit/board.test.ts (should fail)
-- [ ] T012 [P] [US1] Write test for demo board creation in tests/unit/board.test.ts (validates structure)
-- [ ] T013 [P] [US1] Write test for renderer grid drawing in tests/unit/renderer.test.ts (mock context calls verified)
-- [ ] T014 [P] [US1] Write test for renderer X piece drawing in tests/unit/renderer.test.ts (correct coordinates and colors)
-- [ ] T015 [P] [US1] Write test for renderer O piece drawing in tests/unit/renderer.test.ts (correct arc calls)
-- [ ] T016 [P] [US1] Write test for renderer handling empty cells in tests/unit/renderer.test.ts (no piece drawn)
+- [x] T010 [P] [US1] Write test for Board type validation function in tests/unit/board.test.ts (valid 3x3 board passes)
+- [x] T011 [P] [US1] Write test for Board validation with invalid cell count in tests/unit/board.test.ts (should fail)
+- [x] T012 [P] [US1] Write test for demo board creation in tests/unit/board.test.ts (validates structure)
+- [x] T013 [P] [US1] Write test for renderer grid drawing in tests/unit/renderer.test.ts (mock context calls verified)
+- [x] T014 [P] [US1] Write test for renderer X piece drawing in tests/unit/renderer.test.ts (correct coordinates and colors)
+- [x] T015 [P] [US1] Write test for renderer O piece drawing in tests/unit/renderer.test.ts (correct arc calls)
+- [x] T016 [P] [US1] Write test for renderer handling empty cells in tests/unit/renderer.test.ts (no piece drawn)
 
 **Run tests - All should FAIL (RED phase)** ✋
 
 ### Data Model Implementation for User Story 1
 
-- [ ] T017 [P] [US1] Define GamePieceValue type ('X' | 'O' | null) in src/models/board.ts
-- [ ] T018 [P] [US1] Define CellPosition interface (row, col properties) in src/models/board.ts
-- [ ] T019 [US1] Define Cell interface (value, position properties) in src/models/board.ts
-- [ ] T020 [US1] Define Board interface (cells array, size property) in src/models/board.ts
-- [ ] T021 [US1] Implement isValidBoard validation function in src/models/board.ts (checks cell count and positions)
-- [ ] T022 [US1] Create demo board factory function createDemoBoard() in src/models/demo-board.ts with hard-coded X's and O's
+- [x] T017 [P] [US1] Define GamePieceValue type ('X' | 'O' | null) in src/models/board.ts
+- [x] T018 [P] [US1] Define CellPosition interface (row, col properties) in src/models/board.ts
+- [x] T019 [US1] Define Cell interface (value, position properties) in src/models/board.ts
+- [x] T020 [US1] Define Board interface (cells array, size property) in src/models/board.ts
+- [x] T021 [US1] Implement isValidBoard validation function in src/models/board.ts (checks cell count and positions)
+- [x] T022 [US1] Create demo board factory function createDemoBoard() in src/models/demo-board.ts with hard-coded X's and O's
 
 **Run tests for models - Should PASS (GREEN phase)** ✅
 
 ### Renderer Implementation for User Story 1
 
-- [ ] T023 [US1] Implement drawGrid helper function in src/renderer/board-renderer.ts (draws vertical and horizontal lines)
-- [ ] T024 [P] [US1] Implement drawXPiece helper function in src/renderer/board-renderer.ts (two diagonal lines)
-- [ ] T025 [P] [US1] Implement drawOPiece helper function in src/renderer/board-renderer.ts (circle with arc)
-- [ ] T026 [US1] Implement main renderBoard function in src/renderer/board-renderer.ts (clears canvas, draws grid, draws pieces)
-- [ ] T027 [US1] Implement clear function in src/renderer/board-renderer.ts (clears entire canvas)
+- [x] T023 [US1] Implement drawGrid helper function in src/renderer/board-renderer.ts (draws vertical and horizontal lines)
+- [x] T024 [P] [US1] Implement drawXPiece helper function in src/renderer/board-renderer.ts (two diagonal lines)
+- [x] T025 [P] [US1] Implement drawOPiece helper function in src/renderer/board-renderer.ts (circle with arc)
+- [x] T026 [US1] Implement main renderBoard function in src/renderer/board-renderer.ts (clears canvas, draws grid, draws pieces)
+- [x] T027 [US1] Implement clear function in src/renderer/board-renderer.ts (clears entire canvas)
 
 **Run all tests - Should PASS (GREEN phase)** ✅
 
 ### HTML & Entry Point for User Story 1
 
-- [ ] T028 [P] [US1] Create public/index.html with canvas element (id="gameCanvas", 450x450px)
-- [ ] T029 [P] [US1] Create src/style.css with basic layout styling (centering, border, shadow)
-- [ ] T030 [US1] Implement src/main.ts entry point (get canvas, get context, create demo board, render)
-- [ ] T031 [US1] Verify canvas context error handling in src/main.ts (throw if context is null)
+- [x] T028 [P] [US1] Create public/index.html with canvas element (id="gameCanvas", 450x450px)
+- [x] T029 [P] [US1] Create src/style.css with basic layout styling (centering, border, shadow)
+- [x] T030 [US1] Implement src/main.ts entry point (get canvas, get context, create demo board, render)
+- [x] T031 [US1] Verify canvas context error handling in src/main.ts (throw if context is null)
 
 **Checkpoint**: User Story 1 complete - Board renders with hard-coded pieces, all tests pass
 
@@ -104,13 +104,13 @@ Single project structure: `src/`, `tests/`, `public/` at repository root
 
 **Purpose**: Final validation and quality improvements
 
-- [ ] T032 [P] Run npm test:run to verify all unit tests pass
-- [ ] T033 [P] Run npm run dev and manually verify board displays correctly in browser
-- [ ] T034 Validate all acceptance scenarios from spec.md (grid visible, cells distinguishable, pieces visible, grid lines clear)
-- [ ] T035 Verify success criteria SC-001 through SC-004 (load time, visibility, proportions, mobile viewability)
-- [ ] T036 [P] Test responsive display on different screen sizes (desktop, tablet, mobile)
-- [ ] T037 Run quickstart.md validation checklist (all 9 items)
-- [ ] T038 [P] Code review for Constitution compliance (no magic numbers, rendering isolated, types explicit)
+- [x] T032 [P] Run npm test:run to verify all unit tests pass
+- [x] T033 [P] Run npm run dev and manually verify board displays correctly in browser
+- [x] T034 Validate all acceptance scenarios from spec.md (grid visible, cells distinguishable, pieces visible, grid lines clear)
+- [x] T035 Verify success criteria SC-001 through SC-004 (load time, visibility, proportions, mobile viewability)
+- [x] T036 [P] Test responsive display on different screen sizes (desktop, tablet, mobile)
+- [x] T037 Run quickstart.md validation checklist (all 9 items)
+- [x] T038 [P] Code review for Constitution compliance (no magic numbers, rendering isolated, types explicit)
 
 ---
 
@@ -134,24 +134,31 @@ Single project structure: `src/`, `tests/`, `public/` at repository root
 ### Parallel Opportunities
 
 **Phase 1 (Setup)**:
+
 - T003, T004, T005 can run in parallel after T001-T002
 
 **Phase 2 (Foundational)**:
+
 - T008, T009 can run in parallel after T007
 
 **Phase 3 - Tests (US1)**:
+
 - T010-T016: All 7 test tasks can run in parallel (different test files)
 
 **Phase 3 - Models (US1)**:
+
 - T017, T018 can run in parallel (independent types)
 
 **Phase 3 - Renderer (US1)**:
+
 - T024, T025 can run in parallel (independent helper functions)
 
 **Phase 3 - Integration (US1)**:
+
 - T028, T029 can run in parallel (HTML and CSS are independent)
 
 **Phase 4 (Polish)**:
+
 - T032, T033, T036, T038 can run in parallel (independent validation tasks)
 
 ---
@@ -161,7 +168,7 @@ Single project structure: `src/`, `tests/`, `public/` at repository root
 ```bash
 # Launch all test writing tasks together:
 - T010: Write Board validation test (valid case)
-- T011: Write Board validation test (invalid case)  
+- T011: Write Board validation test (invalid case)
 - T012: Write demo board test
 - T013: Write renderer grid test
 - T014: Write renderer X piece test
