@@ -5,6 +5,15 @@
 **Status**: Draft  
 **Input**: User description: "Create a feature specification for a tic-tac-toe game feature that includes: 1. Placing a symbol (X or O) when a user clicks on a board cell 2. Rotating between users after each move (alternating between X and O players)"
 
+## Clarifications
+
+### Session 2026-02-20
+
+- Q: How should the game state (board contents and current turn) be managed in the application? → A: Option B - Centralized game state object with board array and current turn property
+- Q: How should the system handle rapid multiple clicks on cells before the first click completes processing? → A: Option A - Queue only the first click and ignore subsequent clicks until processing completes
+- Q: Should the system provide additional visual feedback during the brief processing time between click and symbol appearance? → A: Option B - No additional feedback; processing is fast enough (<100ms) that instant symbol appearance is sufficient
+- Q: Should the game continue allowing moves after a win condition is reached (until win detection is implemented in a future feature)? → A: Option A - Continue allowing moves even after a win condition is reached (win detection fully deferred to future feature)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Place Symbol on Cell Click (Priority: P1)
@@ -60,8 +69,9 @@ As a player, I should see a clear visual indicator showing whose turn it current
 - What happens when a player clicks on a cell that is already occupied? (System should ignore the click and maintain the current turn)
 - What happens if a player clicks outside the board boundaries? (System should ignore the click)
 - What happens when the board is full but no winner has been determined? (Turn rotation should stop, though this is more relevant for game-over logic which is outside this feature scope)
-- What happens if there's a rapid double-click on the same cell? (Only the first click should be processed; subsequent clicks should be ignored)
+- What happens if there's a rapid double-click on the same cell? (System must process only the first click and ignore all subsequent clicks until the first click completes processing, preventing race conditions and duplicate state updates)
 - What is the initial turn state when the game starts? (Player X always goes first by tic-tac-toe convention)
+- What happens if a win condition is reached during gameplay? (System continues to allow moves on remaining empty cells; win detection and game-over logic are deferred to a future feature)
 
 ## Requirements *(mandatory)*
 
@@ -77,11 +87,15 @@ As a player, I should see a clear visual indicator showing whose turn it current
 - **FR-008**: System MUST provide visual feedback showing which symbol (X or O) is placed in each cell
 - **FR-009**: System MUST display a turn indicator showing whose turn it currently is
 - **FR-010**: System MUST update the turn indicator after each valid move
+- **FR-011**: System MUST ignore all click events on cells while a previous click is being processed (guard against rapid clicks)
+- **FR-012**: System does NOT need to provide loading or processing feedback during symbol placement as operations complete within 100ms
 
 ### Key Entities
 
+- **GameState**: Centralized object managing all game state, containing:
+  - **board**: Array representing the 3x3 grid (9 cells) with values: null (empty), 'X', or 'O'
+  - **currentTurn**: Property tracking the active player ('X' or 'O')
 - **Cell**: Represents a single position on the tic-tac-toe board. Has a state (empty, occupied by X, or occupied by O) and a position (row and column coordinates).
-- **Player Turn**: Represents the current active player (X or O). Changes after each valid move.
 - **Move**: Represents a player action consisting of a player identifier (X or O) and a target cell position.
 
 ## Success Criteria *(mandatory)*
@@ -103,10 +117,11 @@ As a player, I should see a clear visual indicator showing whose turn it current
 - Only two players participate in a game (no AI opponent in this feature)
 - The game operates in a single-device, hot-seat mode (both players use the same device)
 - No network or multiplayer functionality is required for this feature
+- Symbol placement processing completes within 100ms, making intermediate loading feedback unnecessary
 
 ## Out of Scope *(optional)*
 
-- Win condition detection and game-over logic
+- Win condition detection and game-over logic (deferred to future feature; gameplay continues even if win condition is met)
 - Tie/draw detection
 - Score tracking across multiple games
 - Game reset or restart functionality
@@ -117,4 +132,5 @@ As a player, I should see a clear visual indicator showing whose turn it current
 - Animations for placing symbols
 - Sound effects
 - Mobile responsiveness (will be addressed in future features if needed)
+- Loading or processing feedback during symbol placement (operations complete within 100ms)
 
