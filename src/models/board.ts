@@ -32,3 +32,23 @@ export function isValidBoard(board: Board): boolean {
       cell.position.col < board.size,
   );
 }
+
+// Factory function to create empty board
+export function createEmptyBoard(size: number): Board {
+  const cells: Cell[] = [];
+
+  for (let row = 0; row < size; row++) {
+    for (let col = 0; col < size; col++) {
+      cells.push({
+        value: null,
+        position: { row, col },
+      });
+    }
+  }
+
+  return {
+    cells,
+    size,
+  };
+}
+

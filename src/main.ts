@@ -1,4 +1,6 @@
-import { createDemoBoard } from "./models/demo-board";
+import { createInitialGameState } from "./engine/game-engine";
+import { setupClickHandler } from "./input/click-handler";
+import { createTurnIndicator, updateTurnIndicator } from "./ui/turn-indicator";
 import { renderBoard } from "./renderer/board-renderer";
 import "./style.css";
 
@@ -17,8 +19,30 @@ if (!context) {
   );
 }
 
-// Create and render demo board
-const board = createDemoBoard();
-renderBoard(board, context);
+// Get turn indicator container
+const turnIndicatorContainer = document.getElementById("turnIndicatorContainer");
 
-console.log("Dummy board rendered successfully!");
+if (!turnIndicatorContainer) {
+  throw new Error("Turn indicator container not found");
+}
+
+// Initialize game state
+const initialState = createInitialGameState();
+
+// Create and mount turn indicator
+const turnIndicator = createTurnIndicator(initialState.currentTurn);
+turnIndicatorContainer.appendChild(turnIndicator);
+
+// Render initial board
+renderBoard(initialState.board, context);
+
+// Setup click handler with state change callback
+setupClickHandler(canvas, initialState, (newState) => {
+  // Update board rendering
+  renderBoard(newState.board, context);
+
+  // Update turn indicator
+  updateTurnIndicator(turnIndicator, newState.currentTurn);
+});
+
+console.log("Interactive gameplay initialized!");
