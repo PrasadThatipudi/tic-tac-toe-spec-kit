@@ -5,6 +5,16 @@
 **Status**: Draft  
 **Input**: User description: "Create a feature specification for a tic-tac-toe game over condition feature that includes: 1. Detecting when a player has won (three in a row horizontally, vertically, or diagonally) 2. Detecting when the game ends in a draw (board is full with no winner) 3. Displaying the game result to players 4. Preventing further moves after game over"
 
+## Clarifications
+
+### Session 2026-02-20
+
+- Q: How should the winning combination be visually highlighted? → A: Apply a CSS class that adds a border or glow effect around the three winning marks
+- Q: How should game result data be stored in the game state? → A: Store game result in a status enum (ACTIVE, X_WON, O_WON, DRAW) with optional winningLine array for win cases
+- Q: What win-checking strategy should be used after each move (check all 8 lines vs. only relevant lines)? → A: Check only the row, column, and diagonals that include the just-placed mark (3-5 checks maximum)
+- Q: Should this feature include a reset/restart mechanism, or is that deferred to a future feature? → A: No reset mechanism in this feature; new game will be handled in a future feature specification
+- Q: How should the game result be announced to users relying on screen readers for accessibility? → A: Use ARIA live region (polite or assertive) to automatically announce result message to screen readers when game ends
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Win Detection (Priority: P1)
@@ -68,6 +78,7 @@ Players need a clear, prominent display of the game result (winner or draw) that
 1. **Given** any game in progress, **When** a win condition is met, **Then** a result message appears in a prominent location (e.g., above or below the board) stating which player won
 2. **Given** any game in progress, **When** a draw condition is met, **Then** a result message appears in the same prominent location stating the game is a draw
 3. **Given** a completed game showing the result, **When** viewing the screen, **Then** the result message is clearly readable with adequate contrast and size
+4. **Given** a completed game with screen reader active, **When** the game ends (win or draw), **Then** the result message is automatically announced via ARIA live region without requiring user navigation
 
 ---
 
@@ -89,14 +100,15 @@ Players need a clear, prominent display of the game result (winner or draw) that
 - **FR-004**: System MUST prioritize win detection over draw detection (a winning move on the last empty space counts as a win, not a draw)
 - **FR-005**: System MUST prevent any further moves once a game-ending condition (win or draw) is detected
 - **FR-006**: System MUST display the result message clearly stating either "Player X wins!", "Player O wins!", or "It's a draw!" immediately when a game-ending condition is met
-- **FR-007**: System MUST visually distinguish the winning combination (if win) by highlighting or emphasizing the three winning marks
+- **FR-007**: System MUST visually distinguish the winning combination by applying a CSS class to the three winning marks that adds a border or glow effect
 - **FR-008**: System MUST maintain the final board state after game over, showing all placed marks and the result
 - **FR-009**: System MUST disable click handlers or input mechanisms for the board once the game ends
 - **FR-010**: System MUST check for game-ending conditions in a deterministic, consistent manner for identical board states
+- **FR-011**: System MUST announce the game result to screen readers using an ARIA live region (polite or assertive) that automatically communicates the result message when the game ends
 
 ### Key Entities *(include if feature involves data)*
 
-- **Game Result**: Represents the outcome of a completed game - can be a win (with winner identifier X or O, and winning position indices) or a draw (no winner)
+- **Game Result**: Stored as a status enum with values: ACTIVE, X_WON, O_WON, DRAW. For win cases (X_WON, O_WON), an optional winningLine array contains the board position indices (0-8) of the three marks that form the winning combination
 - **Winning Configuration**: Represents one of the eight possible three-in-a-row combinations - defined by board position indices that form a line
 - **Board State**: The current state of all nine board positions, tracked to determine if all spaces are filled (for draw detection)
 - **Game Status**: Enumeration indicating whether the game is active, won, or drawn - controls whether moves can be accepted
@@ -112,4 +124,5 @@ Players need a clear, prominent display of the game result (winner or draw) that
 - **SC-005**: Result messages are displayed consistently within 200 milliseconds of game-ending detection
 - **SC-006**: Players can identify the game outcome (who won or if it's a draw) within 2 seconds of game completion without confusion
 - **SC-007**: The winning line is visually distinguishable from other marks in 100% of win scenarios
+- **SC-008**: Screen readers automatically announce the game result message in 100% of game completion scenarios using ARIA live region
 
